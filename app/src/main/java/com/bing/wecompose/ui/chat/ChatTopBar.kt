@@ -1,12 +1,11 @@
 package com.bing.wecompose.ui.chat
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,7 +22,7 @@ import androidx.compose.ui.unit.sp
  *  @desc:
  */
 @Composable
-fun ChatTopBar(title: String) {
+fun ChatTopBar(title: String, onBackClick: (() -> Unit)? =null, onMoreClick: (() -> Unit)? =null) {
     Box {
         Row(
             Modifier
@@ -31,7 +30,9 @@ fun ChatTopBar(title: String) {
                 .padding(15.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(Icons.Default.ArrowBack, "back")
+            Icon(Icons.Default.ArrowBack, "back",Modifier.clickable {
+                onBackClick?.invoke()
+            })
             Text(
                 text = title,
                 color = Color.Black,
@@ -39,7 +40,9 @@ fun ChatTopBar(title: String) {
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
-            Icon(Icons.Default.MoreVert, "menu")
+            Icon(Icons.Default.MoreVert, "menu",Modifier.clickable {
+                onMoreClick?.invoke()
+            })
         }
     }
 }

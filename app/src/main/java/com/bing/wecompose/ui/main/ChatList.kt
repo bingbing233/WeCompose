@@ -1,7 +1,7 @@
-package com.bing.wecompose.ui
+package com.bing.wecompose.ui.main
 
-import android.graphics.drawable.PaintDrawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,12 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bing.wecompose.R
@@ -28,7 +25,7 @@ import com.bing.wecompose.bean.User
  */
 
 @Composable
-fun WeChatList() {
+fun WeChatList(onItemClick: (() -> Unit)? =null) {
     val user = User()
     user.apply {
         name = "上班的琳"
@@ -40,7 +37,7 @@ fun WeChatList() {
     Box(Modifier.fillMaxSize()){
         LazyColumn() {
             items(3) { item ->
-                ChatItem(user = user)
+                ChatItem(user = user,onItemClick)
                 if (item != 2) {
                     Divider(
                         color = Color(0xffeaeaea),
@@ -58,11 +55,14 @@ fun WeChatList() {
 }
 
 @Composable
-fun ChatItem(user: User) {
+fun ChatItem(user: User, onClick: (() -> Unit)? =null) {
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp)
+            .clickable {
+                 onClick?.invoke()
+            },
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
