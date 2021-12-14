@@ -9,6 +9,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -25,10 +26,10 @@ import com.bing.wecompose.bean.User
  */
 
 @Composable
-fun WeChatList(onItemClick: (() -> Unit)? =null) {
+fun WeChatList(onItemClick: ((String) -> Unit)? =null) {
     val user = User()
     user.apply {
-        name = "上班的琳"
+        name = "年轻的兔子"
         avatarId = R.drawable.lin1
         time = "20:04"
         chatContent = arrayListOf("早上好")
@@ -36,8 +37,8 @@ fun WeChatList(onItemClick: (() -> Unit)? =null) {
 
     Box(Modifier.fillMaxSize()){
         LazyColumn() {
-            items(3) { item ->
-                ChatItem(user = user,onItemClick)
+            items(6) { item ->
+                ChatItem(user = user) { onItemClick?.invoke(user.name) }
                 if (item != 2) {
                     Divider(
                         color = Color(0xffeaeaea),
@@ -59,10 +60,10 @@ fun ChatItem(user: User, onClick: (() -> Unit)? =null) {
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(10.dp)
             .clickable {
                  onClick?.invoke()
-            },
+            }
+            .padding(10.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Box(
@@ -90,7 +91,7 @@ fun ChatItem(user: User, onClick: (() -> Unit)? =null) {
 fun ChatItemPre() {
     val user = User()
     user.apply {
-        name = "上班的琳"
+        name = "年轻的兔子"
         avatarId = R.drawable.lin1
         time = "20:04"
         chatContent = arrayListOf("早上好")

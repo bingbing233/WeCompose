@@ -1,5 +1,6 @@
 package com.bing.wecompose.ui.chat
 
+import androidx.compose.animation.*
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,14 +20,25 @@ fun ChatPagePrev() {
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ChatPage() {
     val viewModel: WeViewModel = viewModel()
-    Scaffold(topBar = {
-        ChatTopBar(
-            title = "上班的琳",
-            onBackClick = { viewModel.isChatting = false })
-    }, bottomBar = { ChatBottomBar() }) {
-        ChatContent()
+    AnimatedVisibility(
+        visible = viewModel.isChatting,
+        enter = slideInHorizontally {
+                                    it
+        },
+        exit = slideOutHorizontally{
+            it
+        }
+    ) {
+        Scaffold(topBar = {
+            ChatTopBar(
+                title = "年轻的兔子",
+                onBackClick = { viewModel.isChatting = false })
+        }, bottomBar = { ChatBottomBar() }) {
+            ChatContent()
+        }
     }
 }

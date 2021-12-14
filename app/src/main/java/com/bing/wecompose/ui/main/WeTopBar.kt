@@ -17,10 +17,10 @@ import androidx.compose.ui.unit.sp
  *  @desc:
  */
 @Composable
-fun WeTopBar() {
+fun WeTopBar(title:String) {
     Column {
         Row(modifier = Modifier.fillMaxWidth().padding(15.dp), horizontalArrangement = Arrangement.Center) {
-            Text(text = "微信",fontSize = 18.sp,fontWeight = FontWeight.Bold)
+            Text(text = title,fontSize = 18.sp,fontWeight = FontWeight.Bold)
 
         }
         Divider(color = Color(0xffeaeaea))
@@ -31,5 +31,5 @@ fun WeTopBar() {
 @Preview(showBackground = true)
 @Composable
 fun WeTopBarPreview() {
-    WeTopBar()
+    WeTopBar("微信")
 }

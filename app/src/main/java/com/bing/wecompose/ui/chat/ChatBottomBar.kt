@@ -1,5 +1,6 @@
 package com.bing.wecompose.ui.chat
 
+import android.widget.Space
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
@@ -25,14 +26,34 @@ fun ChatBottomBar() {
     }
 
     Box {
-        Row (Modifier.fillMaxWidth().padding(horizontal = 8.dp,vertical = 6.dp),horizontalArrangement = Arrangement.SpaceBetween,verticalAlignment = Alignment.CenterVertically){
-            Icon(painter = painterResource(id = R.drawable.ic_baseline_keyboard_voice_24), "voice")
-            OutlinedTextField(value = text, onValueChange = { text = it })
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_baseline_keyboard_voice_24),
+                "voice",
+                modifier = Modifier.size(20.dp)
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+            OutlinedTextField(
+                value = text, onValueChange = { text = it }, modifier = Modifier
+                    .height(20.dp)
+                    .weight(1f)
+            )
+            Spacer(Modifier.width(5.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_outline_emoji_emotions_24),
-                contentDescription = "emotion"
+                contentDescription = "emotion",
+                modifier = Modifier.size(20.dp)
             )
-            Icon(painter = painterResource(id = R.drawable.ic_baseline_add_circle_outline_24), contentDescription = "add")
+            Icon(
+                painter = painterResource(id = R.drawable.ic_baseline_add_circle_outline_24),
+                contentDescription = "add",
+                modifier = Modifier.size(20.dp)
+            )
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.bing.wecompose.bean.User
 
 /**
  *  @author: liangbinghao
@@ -16,4 +17,6 @@ class WeViewModel:ViewModel() {
     var selectedTab by mutableStateOf(0)
     //是否正在聊天
     var isChatting by mutableStateOf(false)
+
+    var chattingUser by mutableStateOf(User())
 }

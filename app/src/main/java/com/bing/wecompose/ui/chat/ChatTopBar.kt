@@ -6,15 +6,16 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bing.wecompose.R
 
 /**
  *  @author: liangbinghao
@@ -40,7 +41,7 @@ fun ChatTopBar(title: String, onBackClick: (() -> Unit)? =null, onMoreClick: (()
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
-            Icon(Icons.Default.MoreVert, "menu",Modifier.clickable {
+            Icon(painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24), "menu",Modifier.clickable {
                 onMoreClick?.invoke()
             })
         }
