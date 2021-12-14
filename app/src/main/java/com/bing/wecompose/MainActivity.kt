@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.core.view.WindowCompat
 import com.bing.wecompose.ui.chat.ChatPage
-import com.bing.wecompose.ui.main.MainPage
-import com.bing.wecompose.ui.theme.WeComposeTheme
+import com.bing.wecompose.ui.home.HomePage
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -34,7 +32,7 @@ class MainActivity : ComponentActivity() {
                         SideEffect {
                             systemUiController.setStatusBarColor(color= White,true)
                         }
-                        MainPage()
+                        HomePage()
                         ChatPage()
                     }
                 }

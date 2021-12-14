@@ -1,15 +1,10 @@
-package com.bing.wecompose.ui.main
+package com.bing.wecompose.ui.home
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -18,8 +13,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bing.wecompose.WeViewModel
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 /**
@@ -30,16 +23,12 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class, com.google.accompanist.pager.ExperimentalPagerApi::class)
 @Composable
-fun MainPage() {
+fun HomePage() {
     val viewModel: WeViewModel = viewModel()
-    var selected by remember {
-        mutableStateOf(0)
-    }
     var pageState = rememberPagerState(0)
     Box() {
         Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween) {
             HorizontalPager(count = 4, Modifier.weight(1f), pageState) { index ->
-                selected = pageState.currentPage
                 when (index) {
                     0 -> ChatList()
                     1 -> ContactList()
@@ -48,7 +37,7 @@ fun MainPage() {
                 }
             }
             val scope = rememberCoroutineScope()
-            WeBottomBar(selected = selected, onSelectedChanged = { selected = it
+            WeBottomBar(selected = pageState.currentPage, onSelectedChanged = {
                 scope.launch {
                     pageState.animateScrollToPage(it,0f)
                 }
@@ -71,13 +60,12 @@ fun ChatList() {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
 fun ContactList() {
     Box() {
         Column {
             WeTopBar("联系人")
-            WeChatList()
+            WeContactList()
         }
     }
 }
@@ -87,7 +75,7 @@ fun ExploreList() {
     Box() {
         Column {
             WeTopBar("发现")
-            WeChatList()
+            WeExploreList()
         }
     }
 }

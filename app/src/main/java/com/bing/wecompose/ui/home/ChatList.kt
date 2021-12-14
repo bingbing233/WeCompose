@@ -1,4 +1,4 @@
-package com.bing.wecompose.ui.main
+package com.bing.wecompose.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -9,7 +9,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign

@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
  */
 
 @Composable
-fun ChatContent() {
-    Box() {
+fun ChatContent(modifier: Modifier = Modifier) {
+    Box(modifier) {
         Column(Modifier.fillMaxSize()) {
             
         }

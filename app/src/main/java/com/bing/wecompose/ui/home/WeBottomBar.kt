@@ -1,4 +1,4 @@
-package com.bing.wecompose.ui.main
+package com.bing.wecompose.ui.home
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable

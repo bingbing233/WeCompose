@@ -3,10 +3,12 @@ package com.bing.wecompose.ui.chat
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -28,12 +30,15 @@ fun ChatTopBar(title: String, onBackClick: (() -> Unit)? =null, onMoreClick: (()
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(15.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(5.dp)
+            ,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(Icons.Default.ArrowBack, "back",Modifier.clickable {
-                onBackClick?.invoke()
-            })
+            IconButton(onClick = { onBackClick?.invoke() }) {
+                Icon(Icons.Default.ArrowBack, "back")
+            }
+
             Text(
                 text = title,
                 color = Color.Black,
@@ -41,9 +46,9 @@ fun ChatTopBar(title: String, onBackClick: (() -> Unit)? =null, onMoreClick: (()
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
-            Icon(painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24), "menu",Modifier.clickable {
-                onMoreClick?.invoke()
-            })
+            IconButton(onClick = { onMoreClick?.invoke()}) {
+                Icon(painter = painterResource(id = R.drawable.ic_baseline_more_horiz_24), "menu")
+            }
         }
     }
 }
